@@ -1,10 +1,11 @@
 import './App.css';
+import HomeScreen from './components/HomeScreen';
 
 function App() {
   return (
     <div className="App">
     
-    Hello World
+    <HomeScreen/>
 
     </div>
   );
