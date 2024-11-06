@@ -2,12 +2,14 @@ import React from 'react';
 import "./Carousel.css";
 
 
-function Carousel({data}) {
+function Carousel({ data }) {
 
   return (
-    <div>{data.map((item,index) =>{
-        return <img src={item.src} alt={item.alt} key={index}/>
-    })}</div>
+    <div className='carousel'>
+      {data.map((item, index) => {
+        return <img src={item.src} alt={item.alt} key={index} className="slide" />
+
+      })}</div>
   )
 }
 
