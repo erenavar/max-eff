@@ -3,9 +3,11 @@ import "./Carousel.css";
 
 
 function Carousel({data}) {
-    console.log('data', data)
+
   return (
-    <div>Carousel</div>
+    <div>{data.map((item,index) =>{
+        return <img src={item.src} alt={item.alt} key={index}/>
+    })}</div>
   )
 }
 
