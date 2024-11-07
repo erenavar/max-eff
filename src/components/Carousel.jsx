@@ -9,12 +9,17 @@ function Carousel({ data }) {
 
   return (
     <div className='carousel'>
-      <BsArrowLeftCircleFill />
+      <BsArrowLeftCircleFill className="arrow arrow-left" />
       {data.map((item, index) => {
         return <img src={item.src} alt={item.alt} key={index} className="slide" />
       })}
-      <BsArrowRightCircleFill />
-    </div>
+      <BsArrowRightCircleFill className="arrow arrow-right" />
+      <span className="indicators">
+        {data.map((item, i) => {
+          return <button key={i} className="indicator"></button>
+        })}
+      </span>
+    </div >
   )
 }
 
