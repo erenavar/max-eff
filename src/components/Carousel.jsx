@@ -2,9 +2,6 @@ import React from 'react';
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs'
 import "./Carousel.css";
 
-
-
-
 function Carousel({ data }) {
 
   return (

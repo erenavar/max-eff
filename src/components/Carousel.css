@@ -1,4 +1,5 @@
 .carousel{
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,5 +12,19 @@
     box-shadow: 0 0 7px #666;
     width: 100%;
     height: 100%;
+}
 
+.arrow{
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    color: white;
+}
+
+.arrow-left{
+    left: 1rem;  
+}
+
+.arrow-right{
+    right: 1rem;  
 }
