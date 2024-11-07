@@ -21,6 +21,10 @@
     color: white;
 }
 
+.arrow:hover{
+    cursor: pointer;
+}
+
 .arrow-left{
     left: 1rem;  
 }
