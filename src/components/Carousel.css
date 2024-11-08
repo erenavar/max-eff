@@ -1,57 +1,113 @@
-.carousel{
+.carousel {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 600;
-     height: 50vh; 
-
+    width: 100%;        
+    height: 50vh;    
+    overflow: hidden;    
 }
 
-.slide{
-    border-radius: 0.5rem;
-    box-shadow: 0 0 7px #666;
+.slide {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
+    transition: opacity 0.5s ease;
 }
-
 
 .slide-hidden {
-    display: none;
-  
+    opacity: 0;
+    pointer-events: none; 
 }
 
-.arrow{
+.slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.slide-content {
     position: absolute;
-    width: 2rem;
-    height: 2rem;
+    bottom: 50px;  
+    left: 20px;
     color: white;
-      
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
 }
 
-.arrow:hover{
-    cursor: pointer;
 
+
+.slide-title {
+    font-size: 2rem;
+    margin: 0;
 }
 
-.arrow-left{
-    left: 1rem;  
+.slide-description {
+    font-size: 1rem;
+    margin-top: 5px;
 }
 
-.arrow-right{
-    right: 1rem;  
-}
-
-.indicators{
-    display: flex;
+.arrow {
     position: absolute;
-    bottom: 1rem;
+    top: 50%;
+    font-size: 2rem;  
+    color: white;    
+    cursor: pointer;
+    transform: translateY(-50%);
+    z-index: 10;   
+    transition: opacity 0.3s ease, color 0.3s ease;
 }
 
-.indicator{
+.arrow-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  
+    width: 3.5rem;                    
+    height: 3.5rem;                 
+    border-radius: 50%;               
+    background-color: black;          
+    display: flex;
+    justify-content: center;
+    align-items: center;          
+    z-index: 5;                      
+}
+
+
+.arrow-wrapper:hover {
+    background-color: rgba(0, 0, 0, 0.8);  
+}
+
+.arrow-wrapper:hover .arrow {
+    color: rgba(255, 255, 255, 1);   
+}
+
+.arrow-left {
+    left: 10px;
+}
+
+.arrow-right {
+    right: 10px;
+}
+
+.indicators {
+    position: absolute;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.indicator {
     background-color: white;
-    height:0.5rem;
-    width:0.5rem;
+    height: 0.5rem;
+    width: 0.5rem;
     border-radius: 100%;
     border: none;
     outline: none;
@@ -62,4 +118,8 @@
 
 .indicator-inactive {
     background-color: gray;
+}
+
+.indicator:hover {
+    background-color: lightgray;
 }

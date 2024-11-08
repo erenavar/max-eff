@@ -1,18 +1,30 @@
 {
-    "slides":[
-        {
-            "src":"https://picsum.photos/seed/img1/600/400",
-            "alt":"Slide 1"
-        },
-        {
-            "src":"https://picsum.photos/seed/img2/600/400",
-            "alt":"Slide 2"
-        },
-        {
-            "src":"https://picsum.photos/seed/img3/600/400",
-            "alt":"Slide 3 "
-        }
-     ]
+  "slides": [
+    {
+      "src": "https://via.placeholder.com/600x400?text=Slide+1",
+      "alt": "First Slide",
+      "title": "Lorem, ipsum dolor.",
+      "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Possimus a hic, odio quas laborum distinctio iure nulla culpa itaque enim."
+    },
+    {
+      "src": "https://via.placeholder.com/600x400?text=Slide+2",
+      "alt": "Second Slide",
+      "title": "Lorem ipsum dolor sit amet.",
+      "description": "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aspernatur, harum?"
+    },
+    {
+      "src": "https://via.placeholder.com/600x400?text=Slide+3",
+      "alt": "Third Slide",
+      "title": "Lorem ipsum dolor sit.",
+      "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae iure provident temporibus iste nesciunt maxime."
+    }
+  ]
 }
+
+
+
+
+
+
 
 
