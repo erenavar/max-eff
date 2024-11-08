@@ -13,7 +13,7 @@ function Carousel({ data }) {
       <BsArrowRightCircleFill className="arrow arrow-right" />
       <span className="indicators">
         {data.map((item, i) => {
-          return <button key={i} className={slide === i ? 'indicator' ? 'indicator indicator-inactive'}></button>
+          return <button key={i} onClick={null} className={slide === i ? 'indicator' : 'indicator indicator-inactive'}></button>
         })}
       </span>
     </div >
