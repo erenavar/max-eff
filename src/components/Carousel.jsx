@@ -8,7 +8,7 @@ function Carousel({ data }) {
     <div className='carousel'>
       <BsArrowLeftCircleFill className="arrow arrow-left" />
       {data.map((item, index) => {
-        return <img src={item.src} alt={item.alt} key={index} className={index ? "slide" : "slide slide-hidden"} />
+        return <img src={item.src} alt={item.alt} key={index} className={slide === index ? "slide" : "slide slide-hidden"} />
       })}
       <BsArrowRightCircleFill className="arrow arrow-right" />
       <span className="indicators">

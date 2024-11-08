@@ -4,7 +4,8 @@
     justify-content: center;
     align-items: center;
     width: 600;
-    height: 400;
+     height: 50vh; 
+
 }
 
 .slide{
@@ -14,8 +15,10 @@
     height: 100%;
 }
 
+
 .slide-hidden {
     display: none;
+  
 }
 
 .arrow{
@@ -23,10 +26,12 @@
     width: 2rem;
     height: 2rem;
     color: white;
+      
 }
 
 .arrow:hover{
     cursor: pointer;
+
 }
 
 .arrow-left{
