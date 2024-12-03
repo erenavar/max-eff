@@ -1,13 +1,18 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
-import HomeScreen from './components/HomeScreen';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Navigationbar from './components/Navigationbar'
+import HomeScreen from './components/HomeScreen'
 
 function App() {
   return (
-    <div className="App">
-    
-    <HomeScreen/>
-    
-    </div>
+    <>
+      <BrowserRouter>
+        <Navigationbar/>
+        <HomeScreen/>
+        
+      </BrowserRouter>
+    </>
   );
 }
 
