@@ -1,4 +1,4 @@
-import MaxeffHome from "@/app/components/MaxeffHome";
+import MaxeffHome from "@/components/MaxeffHome";
 
 export default function Home() {
   return <MaxeffHome />;
