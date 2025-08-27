@@ -5,6 +5,7 @@ import { handleContactFormSubmission } from "@/services/emailService";
  * POST /api/contact
  * Handles contact form submissions
  */
+
 export async function POST(request: NextRequest) {
   try {
     // Parse request body
@@ -48,4 +49,13 @@ export async function GET() {
     },
     { status: 200 }
   );
+}
+
+export async function OPTIONS() {
+  return NextResponse.json({
+    hasKey: !!process.env.RESEND_API_KEY,
+    keyLength: process.env.RESEND_API_KEY?.length || 0,
+    firstChars: process.env.RESEND_API_KEY?.substring(0, 5) || "none",
+    adminEmail: process.env.ADMIN_EMAIL || "not set",
+  });
 }
