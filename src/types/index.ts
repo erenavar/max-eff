@@ -66,6 +66,30 @@ export interface ContactFormData {
   message: string;
 }
 
+export interface ContactFormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
+// API Types
+export interface ApiResponse<T> {
+  success: boolean;
+  message?: string;
+  error?: string;
+  data?: T;
+}
+
+export interface EmailConfig {
+  to: string;
+  from: string;
+  subject: string;
+  html: string;
+  text: string;
+  replyTo?: string;
+}
+
 // Component Props Types
 export interface SectionProps {
   className?: string;
