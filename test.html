@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MAXEFF - Hakkımızda Preview</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial,
+          sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Header */
+      .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        padding: 1rem 5%;
+      }
+
+      .nav {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #0a2342;
+      }
+
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        background: #0a2342;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #333;
+        font-size: 0.95rem;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #3fbf7f;
+      }
+
+      /* Hero Section */
+      .hero {
+        margin-top: 60px;
+        padding: 120px 5% 80px;
+        background: linear-gradient(135deg, #0a2342, #3fbf7f);
+        text-align: center;
+        color: white;
+        position: relative;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .hero-content {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+      }
+
+      .hero p {
+        font-size: 1.5rem;
+        opacity: 0.95;
+      }
+
+      /* Stats Section */
+      .stats {
+        padding: 80px 5%;
+        background: white;
+      }
+
+      .stats-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+      }
+
+      .stat-item {
+        text-align: center;
+      }
+
+      .stat-value {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #3fbf7f;
+      }
+
+      .stat-label {
+        color: #6e6e6e;
+        margin-top: 0.5rem;
+      }
+
+      /* Values Section */
+      .values {
+        padding: 80px 5%;
+        background: #f4f4f4;
+      }
+
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #0a2342;
+        margin-bottom: 3rem;
+      }
+
+      .values-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+      }
+
+      .value-card {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 16px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .value-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      }
+
+      .value-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(135deg, #0a2342, #3fbf7f);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .value-title {
+        font-size: 1.3rem;
+        color: #0a2342;
+        margin-bottom: 1rem;
+      }
+
+      .value-desc {
+        color: #6e6e6e;
+        line-height: 1.7;
+      }
+
+      /* Timeline Section */
+      .timeline {
+        padding: 80px 5%;
+        background: white;
+      }
+
+      .timeline-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .timeline-line {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: rgba(63, 191, 127, 0.3);
+        transform: translateX(-50%);
+      }
+
+      .timeline-item {
+        display: flex;
+        margin-bottom: 3rem;
+        align-items: center;
+      }
+
+      .timeline-item:nth-child(even) {
+        flex-direction: row-reverse;
+      }
+
+      .timeline-content {
+        flex: 1;
+        padding: 0 3rem;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        text-align: right;
+      }
+
+      .timeline-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        display: inline-block;
+      }
+
+      .timeline-year {
+        color: #3fbf7f;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-title {
+        font-weight: 600;
+        color: #0a2342;
+        margin-bottom: 0.5rem;
+      }
+
+      .timeline-desc {
+        color: #6e6e6e;
+        font-size: 0.9rem;
+      }
+
+      .timeline-dot {
+        width: 16px;
+        height: 16px;
+        background: #3fbf7f;
+        border-radius: 50%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        box-shadow: 0 0 0 4px white;
+      }
+
+      /* Team Section */
+      .team {
+        padding: 80px 5%;
+        background: #f4f4f4;
+      }
+
+      .team-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+      }
+
+      .team-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s;
+      }
+
+      .team-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .team-image {
+        height: 250px;
+        background: linear-gradient(135deg, #0a2342, #3fbf7f);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        opacity: 0.5;
+      }
+
+      .team-info {
+        padding: 1.5rem;
+      }
+
+      .team-name {
+        font-size: 1.2rem;
+        color: #0a2342;
+        margin-bottom: 0.25rem;
+      }
+
+      .team-position {
+        color: #3fbf7f;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .team-desc {
+        color: #6e6e6e;
+        font-size: 0.85rem;
+      }
+
+      /* Certifications */
+      .certifications {
+        padding: 80px 5%;
+        background: white;
+      }
+
+      .cert-grid {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .cert-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        background: #f4f4f4;
+        border-radius: 12px;
+        transition: background 0.3s;
+      }
+
+      .cert-item:hover {
+        background: rgba(63, 191, 127, 0.1);
+      }
+
+      .cert-check {
+        color: #3fbf7f;
+        font-size: 1.2rem;
+      }
+
+      .cert-text {
+        color: #0a2342;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      /* CTA Section */
+      .cta {
+        padding: 80px 5%;
+        background: linear-gradient(135deg, #0a2342, #3fbf7f);
+        text-align: center;
+        color: white;
+      }
+
+      .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.95;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: white;
+        color: #0a2342;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Footer */
+      .footer {
+        background: #0a2342;
+        color: white;
+        padding: 3rem 5%;
+        text-align: center;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+        .hero p {
+          font-size: 1rem;
+        }
+        .timeline-line {
+          left: 20px;
+        }
+        .timeline-item,
+        .timeline-item:nth-child(even) {
+          flex-direction: column;
+          text-align: left;
+        }
+        .timeline-content {
+          padding-left: 50px;
+        }
+        .nav-links {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="logo">
+          <div class="logo-icon">🌿</div>
+          <span>MAXEFF</span>
+        </div>
+        <ul class="nav-links">
+          <li><a href="#">Ana Sayfa</a></li>
+          <li><a href="#" style="color: #3fbf7f">Hakkımızda</a></li>
+          <li><a href="#">Hizmetlerimiz</a></li>
+          <li><a href="#">Projeler</a></li>
+          <li><a href="#">İletişim</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Hakkımızda</h1>
+        <p>
+          2012'den beri enerji verimliliği ve sürdürülebilirlik alanında öncü
+          çözümler sunuyoruz
+        </p>
+      </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-value">2012</div>
+          <div class="stat-label">Kuruluş Yılı</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">250+</div>
+          <div class="stat-label">Tamamlanan Proje</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">30+</div>
+          <div class="stat-label">Uzman Kadro</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">%96</div>
+          <div class="stat-label">Müşteri Memnuniyeti</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission, Vision, Values -->
+    <section class="values">
+      <h2 class="section-title">Misyon, Vizyon ve Değerlerimiz</h2>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">🎯</div>
+          <h3 class="value-title">Misyonumuz</h3>
+          <p class="value-desc">
+            Endüstriyel tesislerde enerji verimliliğini maksimize ederek,
+            sürdürülebilir bir gelecek için değer yaratmak.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">💡</div>
+          <h3 class="value-title">Vizyonumuz</h3>
+          <p class="value-desc">
+            Enerji verimliliği ve sürdürülebilirlik alanında Türkiye'nin lider
+            teknoloji ve danışmanlık firması olmak.
+          </p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">🏆</div>
+          <h3 class="value-title">Değerlerimiz</h3>
+          <p class="value-desc">
+            Yenilikçilik, güvenilirlik, sürdürülebilirlik ve müşteri odaklı
+            çözümler ile sektörde fark yaratmak.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="timeline">
+      <h2 class="section-title">Yolculuğumuz</h2>
+      <div class="timeline-container">
+        <div class="timeline-line"></div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <div class="timeline-year">2012</div>
+              <div class="timeline-title">Kuruluş</div>
+              <div class="timeline-desc">
+                MAXEFF, enerji verimliliği vizyonu ile İstanbul'da kuruldu.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <div class="timeline-year">2015</div>
+              <div class="timeline-title">İlk Büyük Proje</div>
+              <div class="timeline-desc">
+                100+ MW kapasiteli endüstriyel tesisin enerji optimizasyonu
+                tamamlandı.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-title">Ar-Ge Merkezi</div>
+              <div class="timeline-desc">
+                IoT ve AI tabanlı enerji yönetim sistemleri için Ar-Ge merkezi
+                açıldı.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-card">
+              <div class="timeline-year">2020</div>
+              <div class="timeline-title">Dijital Dönüşüm</div>
+              <div class="timeline-desc">
+                Bulut tabanlı enerji izleme platformu geliştirildi ve lansmanı
+                yapıldı.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team">
+      <h2 class="section-title">Ekibimiz</h2>
+      <p style="text-align: center; color: #6e6e6e; margin-bottom: 3rem">
+        Alanında uzman, deneyimli ve yenilikçi ekibimizle yanınızdayız
+      </p>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-image">👤</div>
+          <div class="team-info">
+            <div class="team-name">Murat İşler</div>
+            <div class="team-position">Kurucu & CEO</div>
+            <div class="team-desc">15+ yıl enerji sektörü deneyimi</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-image">👤</div>
+          <div class="team-info">
+            <div class="team-name">Dr. Ayşe Kaya</div>
+            <div class="team-position">CTO</div>
+            <div class="team-desc">Enerji sistemleri ve IoT uzmanı</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-image">👤</div>
+          <div class="team-info">
+            <div class="team-name">Mehmet Demir</div>
+            <div class="team-position">Operasyon Direktörü</div>
+            <div class="team-desc">Endüstriyel proses optimizasyonu uzmanı</div>
+          </div>
+        </div>
+        <div class="team-card">
+          <div class="team-image">👤</div>
+          <div class="team-info">
+            <div class="team-name">Zeynep Arslan</div>
+            <div class="team-position">Ar-Ge Direktörü</div>
+            <div class="team-desc">
+              Makine öğrenmesi ve veri analitiği uzmanı
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+      <h2 class="section-title">Sertifikalar ve Yetkinlikler</h2>
+      <div class="cert-grid">
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span class="cert-text">ISO 50001 Enerji Yönetim Sistemi</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span class="cert-text">ISO 9001 Kalite Yönetim Sistemi</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span class="cert-text">ISO 14001 Çevre Yönetim Sistemi</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span class="cert-text"
+            >CMVP - Certified Measurement & Verification</span
+          >
+        </div>
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span class="cert-text">CEA - Certified Energy Auditor</span>
+        </div>
+        <div class="cert-item">
+          <span class="cert-check">✓</span>
+          <span class="cert-text">LEED AP - Leadership in Energy</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <h2>Enerji Verimliliği Yolculuğunuza Başlayın</h2>
+      <p>
+        Uzman ekibimizle tanışın ve işletmenizin enerji verimliliği
+        potansiyelini keşfedin
+      </p>
+      <a href="#" class="cta-button"> Bizimle İletişime Geçin → </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>© 2024 MAXEFF. Tüm hakları saklıdır.</p>
+    </footer>
+  </body>
+</html>

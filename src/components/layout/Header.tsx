@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, JSX } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, Menu, X, Leaf, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import type { NavLink } from "@/types/index";
+import type { NavLink } from "@/types";
 
 const Header: React.FC = () => {
-  const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState<boolean>(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
@@ -21,21 +21,48 @@ const Header: React.FC = () => {
 
   const handleMobileMenuClick = (): void => {
     setMobileMenuOpen(false);
+    setActiveDropdown(null);
   };
 
   const navLinks: NavLink[] = [
     { href: "#hero", label: "Ana Sayfa" },
-    { href: "#about", label: "Hakkımızda" },
+    { href: "/about", label: "Hakkımızda" },
     {
       href: "#services",
       label: "Hizmetlerimiz",
       dropdown: [
-        { href: "#services", label: "Danışmanlık" },
-        { href: "#services", label: "Proto-typing" },
-        { href: "#services", label: "Enerji Verimliliği" },
+        { href: "/services/consultancy", label: "Danışmanlık" },
+        { href: "/services/prototyping", label: "Proto-typing" },
+        { href: "/services/energy-efficiency", label: "Enerji Verimliliği" },
       ],
     },
-    { href: "#tech", label: "Teknolojiler" },
+    {
+      href: "#tech",
+      label: "Teknolojiler",
+      dropdown: [
+        { href: "/tech/evaporation", label: "Evaporasyon Teknolojileri" },
+        {
+          href: "/tech/crystallization",
+          label: "Kristalizasyon Teknolojileri",
+        },
+        {
+          href: "/tech/vapor-compression",
+          label: "Buhar Sıkıştırma Teknolojileri",
+        },
+        { href: "/tech/absorption", label: "Absorpsiyon Teknolojileri" },
+        { href: "/tech/expander", label: "Expander Teknolojileri" },
+        { href: "/tech/heat-pump", label: "Isı Pompası Teknolojileri" },
+        {
+          href: "/tech/removal-capture",
+          label: "Removal & Capture Teknolojileri",
+        },
+        {
+          href: "/tech/stripping-mass-transfer",
+          label: "Stripping & Mass Transfer Teknolojileri",
+        },
+        { href: "/tech/heat-management", label: "Isı Yönetim Teknolojileri" },
+      ],
+    },
     { href: "#projects", label: "Projeler" },
     { href: "#insights", label: "İçgörüler" },
     { href: "#contact", label: "İletişim" },
@@ -43,40 +70,44 @@ const Header: React.FC = () => {
 
   const renderNavLink = (link: NavLink): JSX.Element => {
     if (link.dropdown) {
+      const isOpen = activeDropdown === link.label;
+
       return (
-        <>
+        <div
+          onMouseEnter={() => setActiveDropdown(link.label)}
+          onMouseLeave={() => setActiveDropdown(null)}>
           <button
-            onClick={() => setDropdownOpen(!dropdownOpen)}
             className="flex items-center gap-1 hover:text-[#0A2342] transition-colors"
             aria-haspopup="menu"
-            aria-expanded={dropdownOpen}>
+            aria-expanded={isOpen}>
             {link.label}
             <ChevronDown
               className={`h-4 w-4 transition-transform ${
-                dropdownOpen ? "rotate-180" : ""
+                isOpen ? "rotate-180" : ""
               }`}
             />
           </button>
           <AnimatePresence>
-            {dropdownOpen && (
+            {isOpen && (
               <motion.div
                 initial={{ opacity: 0, y: -6 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -6 }}
-                className="absolute left-0 mt-2 w-56 rounded-2xl border border-gray-100 bg-white shadow-xl p-2">
+                className={`absolute left-0 mt-2 ${
+                  link.label === "Teknolojiler" ? "w-80" : "w-56"
+                } max-h-96 overflow-y-auto rounded-2xl border border-gray-100 bg-white shadow-xl p-2 z-50`}>
                 {link.dropdown.map((item: NavLink) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    onClick={() => setDropdownOpen(false)}
-                    className="block rounded-xl px-3 py-2 hover:bg-[#F4F4F4] transition-colors">
+                    className="block rounded-xl px-3 py-2 hover:bg-[#F4F4F4] transition-colors text-sm">
                     {item.label}
                   </a>
                 ))}
               </motion.div>
             )}
           </AnimatePresence>
-        </>
+        </div>
       );
     }
 
@@ -89,20 +120,33 @@ const Header: React.FC = () => {
 
   const renderMobileNavLink = (link: NavLink): JSX.Element => {
     if (link.dropdown) {
+      const isOpen = activeDropdown === link.label;
+
       return (
         <div className="px-4 py-2">
-          <div className="font-medium mb-2">{link.label}</div>
-          <div className="ml-4 space-y-1">
-            {link.dropdown.map((item: NavLink) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={handleMobileMenuClick}
-                className="block py-1 text-sm text-[#6E6E6E] hover:text-[#0A2342]">
-                {item.label}
-              </a>
-            ))}
-          </div>
+          <button
+            onClick={() => setActiveDropdown(isOpen ? null : link.label)}
+            className="w-full flex items-center justify-between font-medium mb-2">
+            {link.label}
+            <ChevronDown
+              className={`h-4 w-4 transition-transform ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            />
+          </button>
+          {isOpen && (
+            <div className="ml-4 space-y-1">
+              {link.dropdown.map((item: NavLink) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={handleMobileMenuClick}
+                  className="block py-1 text-sm text-[#6E6E6E] hover:text-[#0A2342]">
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       );
     }
@@ -128,7 +172,7 @@ const Header: React.FC = () => {
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <a
-            href="#"
+            href="/"
             className="flex items-center gap-2"
             aria-label="Maxeff anasayfa">
             <div className="h-8 w-8 rounded-xl bg-[#0A2342] grid place-items-center">
@@ -175,8 +219,8 @@ const Header: React.FC = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-t shadow-lg">
-            <nav className="flex flex-col p-4 space-y-2">
+            className="md:hidden bg-white border-t shadow-lg overflow-hidden">
+            <nav className="flex flex-col p-4 space-y-2 max-h-[70vh] overflow-y-auto">
               {navLinks.map((link: NavLink) => (
                 <div key={link.label}>{renderMobileNavLink(link)}</div>
               ))}
