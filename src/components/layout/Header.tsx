@@ -25,10 +25,10 @@ const Header: React.FC = () => {
   };
 
   const navLinks: NavLink[] = [
-    { href: "#hero", label: "Ana Sayfa" },
+    { href: "/", label: "Ana Sayfa" },
     { href: "/about", label: "Hakkımızda" },
     {
-      href: "#services",
+      href: "/services",
       label: "Hizmetlerimiz",
       dropdown: [
         { href: "/services/consultancy", label: "Danışmanlık" },
@@ -37,7 +37,7 @@ const Header: React.FC = () => {
       ],
     },
     {
-      href: "#tech",
+      href: "/technologies",
       label: "Teknolojiler",
       dropdown: [
         { href: "/tech/evaporation", label: "Evaporasyon Teknolojileri" },
@@ -63,12 +63,12 @@ const Header: React.FC = () => {
         { href: "/tech/heat-management", label: "Isı Yönetim Teknolojileri" },
       ],
     },
-    { href: "#projects", label: "Projeler" },
-    { href: "#insights", label: "İçgörüler" },
-    { href: "#contact", label: "İletişim" },
+    { href: "/projects", label: "Projeler" },
+    { href: "/insights", label: "İçgörüler" },
+    { href: "/#contact", label: "İletişim" },
   ];
 
-  const renderNavLink = (link: NavLink): JSX.Element => {
+  const renderNavLink = (link: NavLink) => {
     if (link.dropdown) {
       const isOpen = activeDropdown === link.label;
 
@@ -87,26 +87,24 @@ const Header: React.FC = () => {
               }`}
             />
           </button>
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -6 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -6 }}
-                className={`absolute left-0 mt-2 ${
-                  link.label === "Teknolojiler" ? "w-80" : "w-56"
-                } max-h-96 overflow-y-auto rounded-2xl border border-gray-100 bg-white shadow-xl p-2 z-50`}>
-                {link.dropdown.map((item: NavLink) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="block rounded-xl px-3 py-2 hover:bg-[#F4F4F4] transition-colors text-sm">
-                    {item.label}
-                  </a>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              className={`absolute left-0 mt-2 ${
+                link.label === "Teknolojiler" ? "w-80" : "w-56"
+              } max-h-96 overflow-y-auto rounded-2xl border border-gray-100 bg-white shadow-xl p-2 z-50`}>
+              {link.dropdown.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="block rounded-xl px-3 py-2 hover:bg-[#F4F4F4] transition-colors text-sm">
+                  {item.label}
+                </a>
+              ))}
+            </motion.div>
+          )}
         </div>
       );
     }
@@ -183,7 +181,7 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm text-[#0A2342]/80">
-            {navLinks.map((link: NavLink) => (
+            {navLinks.map((link) => (
               <div key={link.label} className="relative">
                 {renderNavLink(link)}
               </div>
@@ -221,13 +219,13 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t shadow-lg overflow-hidden">
             <nav className="flex flex-col p-4 space-y-2 max-h-[70vh] overflow-y-auto">
-              {navLinks.map((link: NavLink) => (
+              {navLinks.map((link) => (
                 <div key={link.label}>{renderMobileNavLink(link)}</div>
               ))}
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={handleMobileMenuClick}
-                className="mt-2 px-4 py-2 bg-[#3FBF7F] text-white rounded-xl text-center hover:bg-[#3FBF7F]/90 transition-colors">
+                className="mt-2 px-4 py-2 bg-[#3FBF7F] text-white rounded-xl text-center hover:bg-[#3FBF7F]/90 transition-colors block">
                 Teklif Al
               </a>
             </nav>
