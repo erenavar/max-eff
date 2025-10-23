@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { ChevronDown, Menu, X, Leaf, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { NavLink } from "@/types";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -68,16 +69,19 @@ const Header: React.FC = () => {
     { href: "/#contact", label: "İletişim" },
   ];
 
+  // --- Desktop navigation render ---
   const renderNavLink = (link: NavLink) => {
     if (link.dropdown) {
       const isOpen = activeDropdown === link.label;
 
       return (
         <div
+          key={link.label}
+          className="relative"
           onMouseEnter={() => setActiveDropdown(link.label)}
           onMouseLeave={() => setActiveDropdown(null)}>
           <button
-            className="flex items-center gap-1 hover:text-[#0A2342] transition-colors"
+            className="flex items-center gap-1 hover:text-[#0A2342] transition-colors py-2"
             aria-haspopup="menu"
             aria-expanded={isOpen}>
             {link.label}
@@ -87,41 +91,49 @@ const Header: React.FC = () => {
               }`}
             />
           </button>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
-              className={`absolute left-0 mt-2 ${
-                link.label === "Teknolojiler" ? "w-80" : "w-56"
-              } max-h-96 overflow-y-auto rounded-2xl border border-gray-100 bg-white shadow-xl p-2 z-50`}>
-              {link.dropdown.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="block rounded-xl px-3 py-2 hover:bg-[#F4F4F4] transition-colors text-sm">
-                  {item.label}
-                </a>
-              ))}
-            </motion.div>
-          )}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -6 }}
+                className={`absolute left-0 top-full pt-1 ${
+                  link.label === "Teknolojiler" ? "w-80" : "w-56"
+                } z-50`}>
+                <div className="max-h-96 overflow-y-auto rounded-2xl border border-gray-100 bg-white shadow-xl p-2">
+                  {link.dropdown.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      className="block rounded-xl px-3 py-2 hover:bg-[#F4F4F4] transition-colors text-sm">
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       );
     }
 
     return (
-      <a className="hover:text-[#0A2342] transition-colors" href={link.href}>
+      <a
+        key={link.label}
+        className="hover:text-[#0A2342] transition-colors"
+        href={link.href}>
         {link.label}
       </a>
     );
   };
 
-  const renderMobileNavLink = (link: NavLink): JSX.Element => {
+  // --- Mobile navigation render ---
+  const renderMobileNavLink = (link: NavLink) => {
     if (link.dropdown) {
       const isOpen = activeDropdown === link.label;
 
       return (
-        <div className="px-4 py-2">
+        <div key={link.label} className="px-4 py-2">
           <button
             onClick={() => setActiveDropdown(isOpen ? null : link.label)}
             className="w-full flex items-center justify-between font-medium mb-2">
@@ -132,25 +144,32 @@ const Header: React.FC = () => {
               }`}
             />
           </button>
-          {isOpen && (
-            <div className="ml-4 space-y-1">
-              {link.dropdown.map((item: NavLink) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={handleMobileMenuClick}
-                  className="block py-1 text-sm text-[#6E6E6E] hover:text-[#0A2342]">
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          )}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                className="ml-4 space-y-1">
+                {link.dropdown.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={handleMobileMenuClick}
+                    className="block py-1 text-sm text-[#6E6E6E] hover:text-[#0A2342]">
+                    {item.label}
+                  </a>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       );
     }
 
     return (
       <a
+        key={link.label}
         href={link.href}
         onClick={handleMobileMenuClick}
         className="px-4 py-2 hover:bg-[#F4F4F4] rounded-xl transition-colors block">
@@ -169,7 +188,7 @@ const Header: React.FC = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <a
+          <Link
             href="/"
             className="flex items-center gap-2"
             aria-label="Maxeff anasayfa">
@@ -177,23 +196,19 @@ const Header: React.FC = () => {
               <Leaf className="h-4 w-4 text-white" />
             </div>
             <span className="text-lg font-semibold tracking-wide">MAXEFF</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6 text-sm text-[#0A2342]/80">
-            {navLinks.map((link) => (
-              <div key={link.label} className="relative">
-                {renderNavLink(link)}
-              </div>
-            ))}
+            {navLinks.map(renderNavLink)}
           </nav>
 
           {/* CTA Button */}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             className="hidden md:inline-flex items-center gap-2 rounded-2xl border border-[#3FBF7F] px-4 py-2 text-sm text-[#0A2342] hover:bg-[#3FBF7F] hover:text-white transition-all">
             Teklif Al <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
 
           {/* Mobile Menu Button */}
           <button
@@ -219,15 +234,13 @@ const Header: React.FC = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden bg-white border-t shadow-lg overflow-hidden">
             <nav className="flex flex-col p-4 space-y-2 max-h-[70vh] overflow-y-auto">
-              {navLinks.map((link) => (
-                <div key={link.label}>{renderMobileNavLink(link)}</div>
-              ))}
-              <a
+              {navLinks.map(renderMobileNavLink)}
+              <Link
                 href="/#contact"
                 onClick={handleMobileMenuClick}
                 className="mt-2 px-4 py-2 bg-[#3FBF7F] text-white rounded-xl text-center hover:bg-[#3FBF7F]/90 transition-colors block">
                 Teklif Al
-              </a>
+              </Link>
             </nav>
           </motion.div>
         )}
