@@ -8,8 +8,8 @@ import {
   Gauge,
   CheckCircle,
   ArrowRight,
-  DollarSign,
-  Leaf,
+  Settings,
+  Zap,
 } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -17,42 +17,50 @@ import Link from "next/link";
 
 export default function VaporCompressionPage() {
   const highlights = [
-    "Atık buhar ve ısının geri kazanımında yüksek verimlilik",
-    "Evaporasyon, pişirme, konsantre üretimi gibi proseslerde uygulanabilir",
-    "Kömür ve doğalgazlı sistemlere göre daha düşük işletme maliyeti",
-    "Sıfır emisyonlu, sürdürülebilir enerji kullanımı",
+    "Atık ısının yeniden değerlendirilmesinde yüksek verimli açık veya kapalı çevrim tasarımlar",
+    "Direkt atık buhar kullanımıyla düşük yatırım maliyeti",
+    "Manyetik veya foil bearing yataklama ile yağsız, bakım gerektirmeyen çalışma",
+    "Titanyum impeller ve duplex çelik gövdeyle uzun ömürlü yapı",
+    "IGV ve hız sürücüsüyle dinamik basınç–debi kontrolü, surge'siz çalışma",
+    "20'nin üzerinde performans katsayısı (COP) ile olağanüstü enerji verimliliği",
   ];
 
   const benefits = [
     {
-      icon: Recycle,
-      title: "Atık Geri Kazanımı",
-      desc: "Atık buharı yeniden kullanarak %90 tasarruf",
-    },
-    {
       icon: Gauge,
-      title: "Yüksek Verimlilik",
-      desc: "100°C sıcaklık farkında bile verimli çalışma",
+      title: "COP 20+",
+      desc: "Olağanüstü verimlilik",
     },
     {
-      icon: DollarSign,
-      title: "Düşük Maliyet",
-      desc: "Fosil yakıtlara göre %60 işletme tasarrufu",
+      icon: Recycle,
+      title: "Atık Isı Kazanımı",
+      desc: "Direkt buhar kullanımı",
     },
     {
-      icon: Leaf,
-      title: "Sıfır Emisyon",
-      desc: "Karbon nötr üretim altyapısı",
+      icon: Settings,
+      title: "Bakımsız Çalışma",
+      desc: "Yağsız yataklama sistemleri",
+    },
+    {
+      icon: Zap,
+      title: "Dinamik Kontrol",
+      desc: "IGV ve hız sürücüsü",
     },
   ];
 
   const applications = [
-    "Evaporasyon Prosesleri",
-    "Endüstriyel Pişirme",
-    "Konsantre Üretimi",
-    "Kimyasal Prosesler",
-    "Gıda İşleme",
-    "İlaç Üretimi",
+    "Evaporasyon sistemleri",
+    "Konsantre üretimi",
+    "Endüstriyel kurutma sistemleri",
+    "Atık suların distilasyonu",
+    "Kimyasal proseslerde distilasyon uygulamaları",
+  ];
+
+  const sectors = [
+    "Su arıtma ve saflaştırma endüstrisi",
+    "Gıda ve içecek prosesleri",
+    "Kimya ve petrokimya",
+    "Enerji geri kazanımı ve çevre teknolojileri",
   ];
 
   return (
@@ -68,22 +76,20 @@ export default function VaporCompressionPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-white">
             <nav className="flex items-center gap-2 text-white/70 text-sm mb-6">
-              <a href="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white">
                 Ana Sayfa
-              </a>
+              </Link>
               <span>/</span>
               <span>Teknolojiler</span>
               <span>/</span>
-              <span className="text-white">
-                Buhar Basınçlandırma Sistemleri
-              </span>
+              <span className="text-white">Buhar Sıkıştırma Sistemleri</span>
             </nav>
 
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Buhar Basınçlandırma Sistemleri
+              Buhar Sıkıştırma Sistemleri (MVR)
             </h1>
             <p className="text-xl md:text-2xl opacity-90 max-w-3xl">
-              MVR teknolojisi ile atık buhardan maksimum enerji geri kazanımı
+              20+ COP değeriyle atık buhardan maksimum enerji geri kazanımı
             </p>
           </motion.div>
         </div>
@@ -98,20 +104,34 @@ export default function VaporCompressionPage() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}>
               <h2 className="text-3xl font-bold text-[#0A2342] mb-6">
-                MVR - Mekanik Buhar Rekompresyon Teknolojisi
+                Mekanik Buhar Rekompresyon Teknolojisi
               </h2>
-              <p className="text-[#6E6E6E] leading-relaxed mb-6">
-                Buhar basınçlandırma sistemleri (MVR), işletmelerin enerji
-                verimliliğini artıran güçlü bir teknolojidir. Bu sistemler, atık
-                buharı yeniden sıkıştırarak enerji kaybını ortadan kaldırır ve
-                buhar ihtiyacını dış kaynaklara bağımlı olmadan karşılar.
-              </p>
-              <p className="text-[#6E6E6E] leading-relaxed">
-                Uygun mühendislik tasarımıyla, 100 derece sıcaklık farklarında
-                dahi kömür kazanlarından daha düşük maliyetle çalışabilir. Hem
-                enerji hem çevre performansı açısından, sürdürülebilir sanayi
-                dönüşümünün önemli bir bileşenidir.
-              </p>
+              <div className="text-[#6E6E6E] leading-relaxed space-y-4">
+                <p>
+                  MAXEFF'in Buhar Sıkıştırma (MVR) sistemleri, proseslerden
+                  çıkan atık ısının geri kazanılarak tekrar kullanılmasını
+                  sağlar. Bu sistemler, bir tür açık çevrim ısı pompası gibi
+                  çalışarak hem enerji tüketimini azaltır hem de işletme
+                  maliyetlerini düşürür. Direkt atık buharı kullanabildikleri
+                  için ek eşanjör ihtiyacı ortadan kalkar; böylece yatırım
+                  maliyetleri minimize edilir.
+                </p>
+                <p>
+                  Çok kademeli olarak tasarlanabilen buhar sıkıştırma
+                  sistemlerinde, termodinamik denge noktaları optimize edilerek
+                  yüksek sıkıştırma verimi korunurken enerji kayıpları önlenir.
+                  Kompresörlerde kullanılan titanyum impeller, duplex çelik
+                  gövde, ve manyetik/foil bearing yataklama sistemleri, uzun
+                  süreli, yağsız ve bakım gerektirmeyen çalışma sağlar.
+                </p>
+                <p>
+                  20'nin üzerinde COP değerine ulaşabilen bu sistemler, enerji
+                  geri kazanımında en ileri çözümlerden biridir ve özellikle
+                  evaporasyon, distilasyon ve kurutma gibi suyun
+                  uzaklaştırıldığı proseslerde devrim niteliğinde tasarruf
+                  sağlar.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
@@ -140,7 +160,7 @@ export default function VaporCompressionPage() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {highlights.map((highlight, index) => (
               <motion.div
                 key={index}
@@ -204,15 +224,11 @@ export default function VaporCompressionPage() {
             viewport={{ once: true }}
             className="text-center mb-12">
             <h2 className="text-3xl font-bold text-[#0A2342] mb-4">
-              Uygulama Alanları
+              Kullanım Alanları
             </h2>
-            <p className="text-[#6E6E6E] max-w-2xl mx-auto">
-              MVR teknolojisi, çeşitli endüstriyel proseslerde başarıyla
-              uygulanmaktadır
-            </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-4 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-4xl mx-auto">
             {applications.map((app, index) => (
               <motion.div
                 key={index}
@@ -229,6 +245,38 @@ export default function VaporCompressionPage() {
         </div>
       </section>
 
+      {/* Sectors Section */}
+      <section className="py-16 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#0A2342] mb-4">
+              Hizmet Verilen Sektörler
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            {sectors.map((sector, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.05 }}
+                className="bg-gradient-to-br from-[#0A2342] to-[#3FBF7F] text-white rounded-xl p-6 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <Recycle className="w-6 h-6 opacity-80" />
+                  <span className="font-medium">{sector}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 bg-gradient-to-br from-[#0A2342] to-[#3FBF7F]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
@@ -238,11 +286,11 @@ export default function VaporCompressionPage() {
             viewport={{ once: true }}
             className="text-white">
             <h2 className="text-3xl font-bold mb-4">
-              MVR Sistemleri ile Enerji Tasarrufuna Başlayın
+              MVR Sistemleriyle Enerji Verimliliğinde Zirve
             </h2>
             <p className="mb-8 max-w-2xl mx-auto opacity-90">
-              İşletmeniz için en uygun buhar basınçlandırma çözümünü keşfetmek
-              için uzman ekibimizle iletişime geçin.
+              20'nin üzerinde COP değeri ve bakımsız çalışma avantajıyla
+              işletmenizin enerji maliyetlerini dramatik şekilde azaltın.
             </p>
 
             <Link

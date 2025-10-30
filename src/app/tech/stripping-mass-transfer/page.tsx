@@ -68,9 +68,9 @@ export default function DryingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-white">
             <nav className="flex items-center gap-2 text-white/70 text-sm mb-6">
-              <a href="/" className="hover:text-white">
+              <Link href="/" className="hover:text-white">
                 Ana Sayfa
-              </a>
+              </Link>
               <span>/</span>
               <span>Teknolojiler</span>
               <span>/</span>
@@ -81,7 +81,8 @@ export default function DryingPage() {
               Kurutma Teknolojileri
             </h1>
             <p className="text-xl md:text-2xl opacity-90 max-w-3xl">
-              Yüksek kalite ve enerji verimliliği ile endüstriyel kurutma çözümleri
+              Yüksek kalite ve enerji verimliliği ile endüstriyel kurutma
+              çözümleri
             </p>
           </motion.div>
         </div>
@@ -99,14 +100,16 @@ export default function DryingPage() {
                 İleri Kurutma Çözümleri
               </h2>
               <p className="text-[#6E6E6E] leading-relaxed mb-6">
-                MAXEFF kurutma teknolojileri, hem gıda hem endüstriyel uygulamalarda 
-                yüksek kalite ve enerji verimliliği sunar. Aroma kaybını önleyen düşük 
-                sıcaklıkta kurutma prensipleriyle ürün değeri korunur.
+                MAXEFF kurutma teknolojileri, hem gıda hem endüstriyel
+                uygulamalarda yüksek kalite ve enerji verimliliği sunar. Aroma
+                kaybını önleyen düşük sıcaklıkta kurutma prensipleriyle ürün
+                değeri korunur.
               </p>
               <p className="text-[#6E6E6E] leading-relaxed">
-                Kristal ve toz ürünlerde yüksek saflıkta, topaklanma yapmayan sonuçlar 
-                elde edilir. Her kurutma prosesi, ürünün yapısına göre özel olarak 
-                tasarlanır ve bu da hem kaliteyi hem sürdürülebilirliği güvence altına alır.
+                Kristal ve toz ürünlerde yüksek saflıkta, topaklanma yapmayan
+                sonuçlar elde edilir. Her kurutma prosesi, ürünün yapısına göre
+                özel olarak tasarlanır ve bu da hem kaliteyi hem
+                sürdürülebilirliği güvence altına alır.
               </p>
             </motion.div>
 
@@ -203,7 +206,8 @@ export default function DryingPage() {
               Uygulama Alanları
             </h2>
             <p className="text-[#6E6E6E] max-w-2xl mx-auto">
-              Kurutma sistemlerimiz gıda ve endüstriyel sektörlerde geniş kullanım alanına sahiptir
+              Kurutma sistemlerimiz gıda ve endüstriyel sektörlerde geniş
+              kullanım alanına sahiptir
             </p>
           </motion.div>
 
@@ -236,8 +240,8 @@ export default function DryingPage() {
               Kurutma Teknolojileri ile Ürün Kalitenizi Artırın
             </h2>
             <p className="mb-8 max-w-2xl mx-auto opacity-90">
-              İşletmeniz için en uygun kurutma çözümünü keşfetmek için
-              uzman ekibimizle iletişime geçin.
+              İşletmeniz için en uygun kurutma çözümünü keşfetmek için uzman
+              ekibimizle iletişime geçin.
             </p>
 
             <Link
